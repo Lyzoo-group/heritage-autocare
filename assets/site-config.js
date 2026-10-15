@@ -8,4 +8,6 @@ window.HERITAGE_SITE = {
   bookingUrl: '',
   // URL of the deployed Google reviews worker. When set, the rating and review count update automatically.
   reviewsEndpoint: '',
+  // The exact Google review count is only shown once it reaches this number.
+  reviewCountMin: 100,
 };

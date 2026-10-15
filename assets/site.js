@@ -14,7 +14,8 @@
   function apply() {
     if (cfg.bookingUrl) document.querySelectorAll('[data-book-online]').forEach(function (a) { a.href = cfg.bookingUrl; a.style.display = 'inline-flex'; });
     if (!live) return;
-    document.querySelectorAll('[data-g-total]').forEach(function (el) { if (el.textContent !== String(live.total)) el.textContent = live.total; });
+    // The review count stays hidden until it reaches reviewCountMin; until then the fallback wording shows.
+    if (live.total >= (cfg.reviewCountMin || 100)) document.querySelectorAll('[data-g-total]').forEach(function (el) { var v = el.getAttribute('data-g-total').replace('{n}', live.total); if (el.textContent !== v) el.textContent = v; });
     document.querySelectorAll('[data-g-rating]').forEach(function (el) { var v = Number(live.rating).toFixed(1); if (el.textContent !== v) el.textContent = v; });
   }
   var queued = false;
