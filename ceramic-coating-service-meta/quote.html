@@ -14,6 +14,20 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 </script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1147200981365232');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
 <title>Get Your Free Quote | Heritage Auto Care Glasgow</title>
 <meta name="description" content="Tell us about your car and we'll reply with a price and available dates. All-in-One Transformation Package.">
 <meta name="robots" content="noindex, nofollow">
@@ -306,7 +320,7 @@ class Component extends DCLogic {
       'Name: ' + f.name, 'Phone: ' + f.phone, 'Email: ' + (f.email || 'Not provided'),
       'Vehicle: ' + f.vehicle, 'Vehicle Size: ' + f.size, 'Preferred Package: ' + (f.package || 'Not provided'),
       'Additional Information: ' + (f.additionalInfo || 'Not provided'),
-      'Landing Page: https://heritageautocare.co.uk/ceramic-offer/'];
+      'Landing Page: https://heritageautocare.co.uk/ceramic-coating-service-meta/'];
     if (attribution.utm_source) noteLines.push('UTM Source: ' + attribution.utm_source);
     if (attribution.utm_medium) noteLines.push('UTM Medium: ' + attribution.utm_medium);
     if (attribution.utm_campaign) noteLines.push('UTM Campaign: ' + attribution.utm_campaign);
@@ -330,6 +344,7 @@ class Component extends DCLogic {
         var leadId = d && (d.id || d.customerId || d.customerID || (d.customer && d.customer.id) || (d.data && d.data.id));
         if (!leadId) throw new Error('Lead not confirmed');
         self.track('generate_lead', { form: 'ceramic_offer', lead_id: leadId, vehicle_size: f.size, source: 'Meta Ads' });
+        try { if (window.fbq) fbq('track', 'Lead', { content_name: 'Ceramic Coating', content_category: 'Meta Ads' }); } catch (e) {}
         var first = (f.name || '').trim().split(/\s+/)[0] || 'there';
         self.setState({ submitting: false, stage: 2, count: 3, doneName: first, waUrl: self.buildWaUrl(f) }, function () { self.startCountdown(); });
       })
