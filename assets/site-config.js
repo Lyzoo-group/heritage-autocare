@@ -1,13 +1,17 @@
 // Heritage Auto Care: site settings shared by every page.
+// Fill these in when the services are ready. Empty values keep the current behaviour.
 window.HERITAGE_SITE = {
-  // Quote requests are emailed to contact@heritageautocare.co.uk via FormSubmit.
-  // The first request triggers a one-time "Activate form" email. Click it to start receiving requests.
-  // Replace with your Urable link or webhook when it's ready.
-  quoteEndpoint: 'https://formsubmit.co/ajax/contact@heritageautocare.co.uk',
+  // Where quote requests are sent (POSTed as JSON). For example a Urable, Zapier or form webhook URL.
+  quoteEndpoint: '',
   // Your Urable online booking link. When set, a "Book online" button appears next to every quote form.
   bookingUrl: '',
-  // URL of the deployed Google reviews worker. When set, the rating and review count update automatically.
+  // URL of the deployed Google reviews worker (see integrations/google-reviews-worker.js).
+  // When set, the star rating and review count update automatically on every page.
   reviewsEndpoint: '',
-  // The exact Google review count is only shown once it reaches this number.
-  reviewCountMin: 100,
+  // Google Tag Manager (GTM-W9SR5JPQ) is installed in the homepage <head> only.
+  // Leave this empty, otherwise the container loads on other pages too.
+  // Meta Pixel, Conversions API and GA4 tags live inside the container.
+  gtmId: '',
+  // Set to false if your cookie banner already sets Google consent mode defaults.
+  consentDefaults: true,
 };
